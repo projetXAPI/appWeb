@@ -1,6 +1,6 @@
 function initServ() // Fonction d'initialisation du serveur 
 	{
-	  var conf = { 								// variable configurant les paramètres de connexion
+	var conf = { 								// variable configurant les paramètres de connexion
 	"endpoint" : "https://cloud.scorm.com/tc/0O6GMM7KOI/sandbox/", 	// endpoint : notre serveur
 	"user" : "vincentglize@hotmail.fr", 							// utilisateur
 	"password" : "iutbay64", 										// mot de passe
