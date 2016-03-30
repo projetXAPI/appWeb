@@ -12,6 +12,7 @@ function initServ() // Fonction d'initialisation du serveur
 	}
 	
 	var ret = ADL.XAPIWrapper.getStatements();
+	
 if (ret)
    ADL.XAPIWrapper.log(ret.statements);
 	//var search = ADL.XAPIWrapper.searchParams();
