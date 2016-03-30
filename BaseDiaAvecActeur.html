@@ -1,0 +1,70 @@
+<html>
+	<head>
+    <meta charset="utf-8">
+		<script src="js/xapiwrapper.min.js"></script>
+		<script src="js/dashboard.js"></script>
+		<script src="ScriptJS.js"></script>
+		<script type="text/javascript">
+		
+		function wordExtract(statements)
+		{
+			var result = "";			
+			for(var i=0;i<statements.length;i++)
+			{				
+				var st = statements[i];
+				result = result + st["actor"]["name"] + " : " + st["object"]["definition"]["name"]["und"]+ " <br>";		
+			}	
+			result = result + "--------------------------------- FIN DIALOGUE --------------------------------- <br>";
+			return result;
+		}
+		
+		function getPhraseList(){
+		
+			var conf = {
+				"endpoint" : "https://cloud.scorm.com/tc/0O6GMM7KOI/sandbox/",
+				"user" : "vincentglize@hotmail.fr",
+				"password" : "iutbay64",
+				"allowFail" : "False"
+				};
+				
+				// Login
+				ADL.XAPIWrapper.changeConfig(conf);
+				
+				// Get statements
+				var ret = ADL.XAPIWrapper.getStatements();
+				unStat = ret.statements;
+				var result = unStat;
+				
+				alert ("longueur : "+result.length);
+				// Si moins de 500 statements, on a déjà tout, donc renvoi fini, on fait juste un return.		
+				if (unStat.length < 500) return result;
+				
+				//Sinon, on refait la requête avec une condition pour chercher à partir du statement 499.
+				do{													
+					var search = ADL.XAPIWrapper.searchParams();
+					search['until'] = unStat[499]["timestamp"];										
+					var ret = ADL.XAPIWrapper.getStatements(search);
+					unStat = ret.statements;
+					result = result.concat(unStat);
+					alert ("Longueur finale : "+result.length);
+				}
+				while(unStat.length > 500);
+				
+				return result;			
+		}
+	
+		function init()
+		{
+				phraseList = getPhraseList();
+				document.write(wordExtract(phraseList));
+		}
+
+		
+		AfficherRoles("ES2002d");
+		
+		</script>
+	</head>
+	<body onload='init()'>
+		<code><pre id='output'></pre></code>
+	</body>
+</html>

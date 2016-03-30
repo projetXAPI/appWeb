@@ -1,12 +1,11 @@
 // SCRIPTS MAISON
 
-// Fonction qui va concaténer les deux valeurs sélectionnées pour donner le nom complet à chercher
 function concat() {
+	// Fonction qui va concaténer les deux valeurs sélectionnées pour donner le nom complet de la réunion à chercher
 	var nomComplet = document.getElementById("SelectReunion").value+document.getElementById("Session").value;
-	document.getElementById("para").innerHTML = "Votre réunion : " + nomComplet;
+	document.getElementById("para").innerHTML = "Votre réunion : " + nomComplet; // affichage dans le paragraphe
 	}
 	
-
 	
 function AfficherRoles(nomComplet){	
 	// Récupération des statements pour y chercher ceux exprimant les rôles
@@ -16,9 +15,9 @@ function AfficherRoles(nomComplet){
 	var resRole = ADL.XAPIWrapper.getStatements(search);
 	ADL.XAPIWrapper.log(resRole.statements);
 	
+}	
 	
-	
-	/*
+	/* EXTRAIT DOC DE CHARTS.JS : http://www.chartjs.org/docs/#bar-chart-example-usage
 	var data = {
     labels: ["January", "February", "March", "April", "May", "June", "July"],
     datasets: [
@@ -41,4 +40,3 @@ function AfficherRoles(nomComplet){
     ]
 };
 	*/
-}

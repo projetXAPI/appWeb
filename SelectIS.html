@@ -24,7 +24,7 @@
                   <div class="callout">
                      <label>
                         Réunions Scénarisées de l'IDIAP <br>
-                        <select id="SelectReunion">
+                        <select id="SelectReunion" onchange="concat()">
                            <option value="IS1000">IS1000</option>
                            <option value="IS1001">IS1001</option>
                            <option value="IS1002">IS1002</option>
@@ -40,7 +40,7 @@
 					 <p> Les réunions sont ici découpées en 4 sessions (a,b,c,d) d'une heure, choisissez celle que vous voulez <p>
 					 <label>
                         Session <br>
-                        <select id="Session">
+                        <select id="Session" onchange="concat()">
                            <option value="a">a</option>
                            <option value="b">b</option>
                            <option value="c">c</option>
@@ -55,8 +55,10 @@
       <div class="row">
          <div class="callout large">
             <div class="colums">
-               <label>
+				<label>
                   <h4>Une fois votre réunion sélectionnée, validez ! </h4>
+				  <p id="para"></p>
+				</label>
             </div>
             <br>
             <div class="colums">
@@ -69,5 +71,6 @@
       <script src="js/vendor/what-input.min.js"></script>
       <script src="js/foundation.min.js"></script>
       <script src="js/app.js"></script>
+	  <script src="ScriptJS.js"></script>
    </body>
 </html>
