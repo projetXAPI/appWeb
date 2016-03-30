@@ -1,0 +1,20 @@
+<script langage="javascript">
+  var Tableau = new Array(10,9,8,7,6,5,4,3,2,1);
+  for (var ind01 = 0; ind01 < Tableau.length;ind01++)
+  {
+	var ind02 = ind01 + 1;
+	while (Tableau[ind01] > Tableau[ind02])
+	{
+		temp = Tableau[ind01];
+		Tableau[ind01] = Tableau[ind02];
+		Tableau[ind02] = temp;
+		ind02++;
+	}
+  }
+		
+	
+  for (var ind01 = 0; ind01 < Tableau.length;ind01++)
+  {
+	document.write(Tableau[ind01]+"<br>")
+  }
+</script>

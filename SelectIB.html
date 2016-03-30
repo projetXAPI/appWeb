@@ -1,0 +1,60 @@
+<!doctype html>
+<html class="no-js" lang="fr">
+   <head>
+      <meta charset="utf-8" />
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="css/foundation.css" />
+      <link rel="stylesheet" href="css/app.css" />
+      <title>xAPI Meeting Browser</title>
+   </head>
+   
+   <body>
+      <br>
+      <div class="row">
+         <div class="large-12 columns">
+            <h1>xAPI Meeting Browser</h1>
+         </div>
+      </div>
+      <div class="row">
+         <div class="large-12 columns">
+            <div class="callout large">
+               <h3>Choisissez une réunion à afficher</h3> <br>
+               <div class="large-12 columns">
+                  <div class="callout">
+                     <label>
+                        Réunions non scénarisées de l'ISSCO-IDIAP <br>
+                        <select id="SelectReunion">
+                           <option value="IB4001">IB4001</option>
+                           <option value="EN2001b">IB4002</option>
+                           <option value="IB4002">IB4003</option>
+                           <option value="IB4004">IB4004</option>
+                           <option value="IB4005">IB4005</option>
+                           <option value="IB4010">IB4010</option>
+                           <option value="IB4011">IB4011</option>
+                        </select>
+                     </label>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="row">
+         <div class="callout large">
+            <div class="colums">
+               <label>
+                  <h4>Une fois votre réunion sélectionnée, validez ! </h4>
+            </div>
+            <br>
+            <div class="colums">
+            <a href="resultats.html" class="large expanded button" onclick="afficherResultat()">Valider</a>
+            </div>
+            </label>
+         </div>
+      </div>
+      <script src="js/vendor/jquery.min.js"></script>
+      <script src="js/vendor/what-input.min.js"></script>
+      <script src="js/foundation.min.js"></script>
+      <script src="js/app.js"></script>
+   </body>
+</html>

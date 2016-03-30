@@ -1,0 +1,68 @@
+<!doctype html>
+<html class="no-js" lang="fr">
+   <head>
+      <meta charset="utf-8" />
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="css/foundation.css" />
+      <link rel="stylesheet" href="css/app.css" />
+      <title>xAPI Meeting Browser</title>
+   </head>
+   
+   <body>
+      <br>
+      <div class="row">
+         <div class="large-12 columns">
+            <h1>xAPI Meeting Browser</h1>
+         </div>
+      </div>
+      <div class="row">
+         <div class="large-12 columns">
+            <div class="callout large">
+               <h3>Choisissez une réunion à afficher</h3> <br>
+               <div class="large-12 columns">
+                  <div class="callout">
+                     <label>
+                        Réunions non scénarisées d'Edimbourg <br>
+                        <select id="SelectReunion">
+                           <option value="EN2001a">EN2001a</option>
+                           <option value="EN2001b">EN2001b</option>
+                           <option value="EN2001d">EN2001d</option>
+                           <option value="EN2001e">EN2001e</option>
+                           <option value="EN2002a">EN2002a</option>
+                           <option value="EN2002b">EN2002b</option>
+                           <option value="EN2002c">EN2002c</option>
+                           <option value="EN2003a">EN2003a</option>
+                           <option value="EN2004a">EN2004a</option>
+                           <option value="EN2005a">EN2005a</option>
+                           <option value="EN2006a">EN2006a</option>
+                           <option value="EN2006b">EN2006b</option>
+                           <option value="EN2009b">EN2009b</option>
+                           <option value="EN2009c">EN2009c</option>
+                           <option value="EN2009d">EN2009d</option>
+                        </select>
+                     </label>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="row">
+         <div class="callout large">
+            <div class="colums">
+               <label>
+                  <h4>Une fois votre réunion sélectionnée, validez ! </h4>
+            </div>
+            <br>
+            <div class="colums">
+            <a href="resultats.html" class="large expanded button" onclick="afficherResultat()">Valider</a>
+            </div>
+            </label>
+         </div>
+      </div>
+      <script src="js/vendor/jquery.min.js"></script>
+      <script src="js/vendor/what-input.min.js"></script>
+      <script src="js/foundation.min.js"></script>
+      <script src="js/app.js"></script>
+   </body>
+</html>
