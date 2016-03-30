@@ -36,17 +36,22 @@
 	</head>
 	
 	<body>
-		<br><span id='status'>Récupération des données </span>
+		<br>
+		<span id='status'>Récupération des données </span>
+		
 		<div id='graphContainer'>
 			<div id='ActeurA' class='container'>
 				<svg></svg>
 			</div>
+			
 			<div id='ActeurB' class='container'>
 				<svg></svg>
 			</div>
+			
 			<div id='ActeurC' class='container'>
 				<svg></svg>
 			</div>
+			
 			<div id='ActeurD' class='container'>
 				<svg></svg>
 			</div>
@@ -54,10 +59,15 @@
 		
 		<script>
 
-			initServ();
+			// initServ();
 			
 			var wrapper = ADL.XAPIWrapper;
 			var dash = new ADL.XAPIDashboard();
+			wrapper.changeConfig({
+			'endpoint':'https://cloud.scorm.com/tc/0O6GMM7KOI/sandbox/',
+			'user':'vincentglize@hotmail.fr',
+			'password' : 'iutbay64',
+			'allowFail' : 'False'});
 
 			var handle = setInterval(function(){
 				document.querySelector('span').innerHTML += '.';
