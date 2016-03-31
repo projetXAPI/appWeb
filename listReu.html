@@ -1,11 +1,20 @@
- <meta charset="UTF-8"> 
- <script src="Chart.js"></script>
+ <meta charset="UTF-8">
+  <script src="Chart.js"></script>
 <script src="js/xapiwrapper.min.js"></script>
 <script src="js/recuperationStatement.js"></script>
+<script src="js/listReu.js"></script>
 
-	</head>
-	<body onload='getStatements()'>
-        <h1 id="titre"></h1><br>
+<body onload='init()'>
+<div id="pageList">
+    <h1>Liste réunion</h1><br><br>
+    <p id="chargement">Chargement...</p>
+    <div id="list"></div>
+</div>
+
+
+<div id="pageReu" style="visibility:hidden">
+    
+     <h1 id="titre"></h1><br>
         <h3 id="description"></h3>
         <h4 id="nom"></h4>
         <br><br>
@@ -75,5 +84,7 @@
         
         <div id ="dialogue">
             
-        </div>
-	</body>    
+        </div>    
+    
+</div>
+</body>
