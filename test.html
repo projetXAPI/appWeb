@@ -1,0 +1,148 @@
+ <meta charset="UTF-8"> 
+<script src="js/xapiwrapper.min.js"></script>
+<script type="text/javascript">
+        
+        function afficherPhrases(r) {
+            var phrases = JSON.parse(r.response).statements;
+            var descr = "";
+            var name = "";
+            var acteur = "";
+            var dialogue = "";
+            
+            for (var i in phrases) {
+                descr = phrases[i]['object']['definition']['description']['und'];
+                name = phrases[i]['object']['definition']['name']['und'];
+                acteur = phrases[i]['actor']['name'];
+                
+                dialogue += "<strong>" + acteur + "</strong> : " + name + "<br>";
+            }
+            document.getElementById("dialogue").innerHTML = dialogue;   
+            ADL.XAPIWrapper.log(phrases);
+        }
+        function afficherInformation(r) {
+            console.log("INFOOOOOOOOOO");
+            var infos = JSON.parse(r.response).statements;
+            
+            var descr = "";
+            var name = "";
+            
+            for(var i in infos) {
+                descr = infos[i]['object']['definition']['description']['und'];
+                name = infos[i]['object']['definition']['name']['und'];
+                
+                document.getElementById(name).innerHTML = descr;   
+            }
+            
+            ADL.XAPIWrapper.log(infos);
+        }
+        function afficherTempsRole(r) {
+            var role = JSON.parse(r.response).statements;
+            var descr = "";
+            var name = "";
+            var acteur = "";
+            
+            for (var i in role) {
+                descr = role[i]['object']['definition']['description']['und'];
+                name = role[i]['object']['definition']['name']['und'];
+                acteur = role[i]['actor']['name'];
+                
+                document.getElementById(name+acteur).innerHTML = "<strong>"+name + "</strong> pendant <strong>"
+                                                            + descr + "</strong> sc"; 
+            }
+            ADL.XAPIWrapper.log(JSON.parse(r.response).statements);
+        }
+        function afficherRole(r) {
+            var roles = JSON.parse(r.response).statements;
+            console.log("************");
+            //roles = JSON.parse(roles);
+            console.log("Le membre : " + roles[0]['actor']['name'] + " a été "
+                        + roles[0]['object']['definition']['name']['und']
+                        + "Pendant " + roles[0]['object']['definition']['description']['und'] + "sc");
+            ADL.XAPIWrapper.log(roles);
+        }
+		
+		function getStatements(){
+            
+            var nomReu = "ES2002d";
+		
+			  var conf = {
+					"endpoint" : "https://cloud.scorm.com/tc/0O6GMM7KOI/sandbox/",
+					"user" : "vincentglize@hotmail.fr",
+					"password" : "iutbay64",
+					"allowFail" : "False"
+				};
+								
+				//Login
+				ADL.XAPIWrapper.changeConfig(conf);
+				
+				//Get statements
+                var myparams = ADL.XAPIWrapper.searchParams();
+                myparams['verb'] = "http://projet10.fr/verbs/information/"+nomReu;
+				var ret = ADL.XAPIWrapper.getStatements(myparams, "", function(r) { afficherInformation(r); });				
+                //var infoReu = ret.statements;
+                
+                myparams = ADL.XAPIWrapper.searchParams();
+                myparams['verb'] = "http://projet10.fr/verbs/temps_role/"+nomReu;
+				ret = ADL.XAPIWrapper.getStatements(myparams, "", function(r) { afficherTempsRole(r); });				
+                //var temps_roles = ret.statements;
+                
+                myparams = ADL.XAPIWrapper.searchParams();
+                myparams['verb'] = "http://projet10.fr/verbs/role/"+nomReu;
+				rret = ADL.XAPIWrapper.getStatements(myparams, "", function(r) { afficherRole(r); });				
+                //var roles = ret.statements;
+                
+                myparams = ADL.XAPIWrapper.searchParams();
+                myparams['verb'] = "http://projet10.fr/verbs/phrase/"+nomReu;
+				ret = ADL.XAPIWrapper.getStatements(myparams, "", function(r) { afficherPhrases(r); });				
+                
+		}
+					
+		function init()
+		{				
+				getStatements();
+		}
+	
+
+		</script>
+	</head>
+	<body onload='init()'>
+        <h1 id="titre"></h1><br>
+        <h3 id="description"></h3>
+        <h4 id="nom"></h4>
+        <br><br>
+        Date : <strong id="date"></strong><br>
+        Durée : <strong id="duree"></strong> secondes<br><br>
+        
+        <div id="A">
+            <div id="SupporterA"></div>
+            <div id="ProtagonistA"></div>
+            <div id="NeutralA"></div>
+            <div id="GatekeeperA"></div>
+            
+        </div>
+        <div id="B">
+             <div id="SupporterB"></div>
+            <div id="ProtagonistB"></div>
+            <div id="NeutralB"></div>
+            <div id="GatekeeperB"></div>
+        </div>
+        <div id="C">
+             <div id="SupporterC"></div>
+            <div id="ProtagonistC"></div>
+            <div id="NeutralC"></div>
+            <div id="GatekeeperC"></div>
+        </div>
+        <div id="D">
+             <div id="SupporterD"></div>
+            <div id="ProtagonistD"></div>
+            <div id="NeutralD"></div>
+            <div id="GatekeeperD"></div>
+        </div>
+        
+        <br><br>
+        <h2>Dialogues</h2><br>
+        
+        <div id ="dialogue">
+            
+        </div>
+	</body>    
