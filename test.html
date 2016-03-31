@@ -6,6 +6,7 @@
 		function afficherGraphiqueTempsRole() {
 			console.log(window["NeutralA"]);
 			var listActeurs="ABCD";
+			var color = 10;
 			for (var i=0; i<listActeurs.length; i++) {
 				 window["barChartData"+listActeurs.charAt(i)] = {
 					labels : ["Protagonist","Supporter","Neutral","Gatekeeper"],
@@ -19,10 +20,13 @@
 						}
 					]
 				}
+				
+				console.log(window["Protagonist"+listActeurs.charAt(i)] + " "
+							+ window["Supporter"+listActeurs.charAt(i)]
+							+ " " + window["Neutral"+listActeurs.charAt(i)]
+							+ " " + window["Gatekeeper"+listActeurs.charAt(i)]);
 			 
 			}
-			console.log("TEST WINDOW BARCHARTA ");
-			console.log(window["barChartDataA"]);
 			initGraphique();
 		}
         
@@ -44,7 +48,6 @@
             ADL.XAPIWrapper.log(phrases);
         }
         function afficherInformation(r) {
-            console.log("INFOOOOOOOOOO");
             var infos = JSON.parse(r.response).statements;
             
             var descr = "";
@@ -64,6 +67,14 @@
             var descr = "";
             var name = "";
             var acteur = "";
+			
+			var listActeurs="ABCD";
+			for (var i=0; i<listActeurs.length; i++) {
+				window["Supporter"+listActeurs.charAt(i)] = 0;
+				window["Neutral"+listActeurs.charAt(i)] = 0;
+				window["Protagonist"+listActeurs.charAt(i)] = 0;
+				window["Gatekeeper"+listActeurs.charAt(i)] = 0;
+			}
             
             for (var i in role) {
                 descr = role[i]['object']['definition']['description']['und'];
@@ -71,7 +82,6 @@
                 acteur = role[i]['actor']['name'];
                 
 				window[name+acteur] = descr;
-				console.log(window[name+acteur]);
 				
                 document.getElementById(name+acteur).innerHTML = "<strong>"+ acteur + " : " + name + "</strong> pendant <strong>"
                                                             + descr + "</strong> sc"; 
@@ -85,12 +95,11 @@
         }
         function afficherRole(r) {
             var roles = JSON.parse(r.response).statements;
-            console.log("************");
             //roles = JSON.parse(roles);
-            console.log("Le membre : " + roles[0]['actor']['name'] + " a été " // membre
+          /*  console.log("Le membre : " + roles[0]['actor']['name'] + " a été " // membre
                         + roles[0]['object']['definition']['name']['und'] // role
-                        + "Pendant " + roles[0]['object']['definition']['description']['und'] + "sc"); // nb sec
-            ADL.XAPIWrapper.log(roles);
+                        + "Pendant " + roles[0]['object']['definition']['description']['und'] + "sc");  // nb sec
+            ADL.XAPIWrapper.log(roles); */
         }
 		
 		function getStatements(){
@@ -129,28 +138,42 @@
                 
 		}
 		
+		function changeColor(mybar) {
+            myBar.datasets[0].bars[0].fillColor = "red"; //bar 1
+		    myBar.datasets[0].bars[1].fillColor = "blue"; //bar 2
+			myBar.datasets[0].bars[2].fillColor = "green"; //bar 3
+			myBar.datasets[0].bars[3].fillColor = "orange"; //bar 3
+			myBar.update();
+        }
+		
 		
 		function initGraphique() {
 			var ctx = document.getElementById("canvasA").getContext("2d");
 			var barChartDataA = window["barChartDataA"];
-			window.myBar = new Chart(ctx).Bar(barChartDataA, {
+			window.myBar = new Chart(ctx).Bar(window["barChartDataA"], {
 				responsive : true
 			});
+			
+			changeColor(myBar);
 			
 			var ctx = document.getElementById("canvasB").getContext("2d");
-			window.myBar = new Chart(ctx).Bar(barChartDataB, {
+			window.myBar = new Chart(ctx).Bar(window["barChartDataB"], {
 				responsive : true
 			});
+			changeColor(myBar);
 			
 			var ctx = document.getElementById("canvasC").getContext("2d");
-			window.myBar = new Chart(ctx).Bar(barChartDataC, {
+			window.myBar = new Chart(ctx).Bar(window["barChartDataC"], {
+				responsive : true
+			});
+			changeColor(myBar);
+			
+			var ctx = document.getElementById("canvasD").getContext("2d");
+			window.myBar = new Chart(ctx).Bar(window["barChartDataD"], {
 				responsive : true
 			});
 			
-			var ctx = document.getElementById("canvasD").getContext("2d");
-			window.myBar = new Chart(ctx).Bar(barChartDataD, {
-				responsive : true
-			});
+			changeColor(myBar);
 		}
 					
 		function init()
@@ -170,16 +193,20 @@
         Date : <strong id="date"></strong><br>
         Durée : <strong id="duree"></strong> secondes<br><br>
 		
-		<div style="width: 40%">
+		A
+		<div style="width: 20%" style="display: inline; float: left;">
 			<canvas id="canvasA" height="450" width="600"></canvas>
 		</div>
-		<div style="width: 40%">
+		B
+		<div style="width: 20%" style="display: inline;">
 			<canvas id="canvasB" height="450" width="600"></canvas>
 		</div>
-		<div style="width: 40%">
+		C
+		<div style="width: 20%">
 			<canvas id="canvasC" height="450" width="600"></canvas>
 		</div>
-		<div style="width: 40%">
+		D
+		<div style="width: 20%">
 			<canvas id="canvasD" height="450" width="600"></canvas>
 		</div>
         
