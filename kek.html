@@ -1,0 +1,222 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Bar Chart</title>
+		<script src="Chart.js"></script>
+	</head>
+	<body>
+		<div style="width: 40%">
+			<canvas id="canvasA" height="450" width="600"></canvas>
+		</div>
+		<div style="width: 40%">
+			<canvas id="canvasB" height="450" width="600"></canvas>
+		</div>
+		<div style="width: 40%">
+			<canvas id="canvasC" height="450" width="600"></canvas>
+		</div>
+		<div style="width: 40%">
+			<canvas id="canvasD" height="450" width="600"></canvas>
+		</div>
+
+
+	<script>
+	var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
+	
+	
+	// faire une méthode getRoles() pour récup durée des roles + stocker dans variables
+	
+	
+	// VARIABLES ET DONNÉES UTILES AUX CHARTS
+	// PARTIE A
+	var RoleAGatekeeper = 10;
+	var RoleANeutral = 25;
+	var RoleAProtagonist = 36;
+	var RoleASupporter = 69;
+	var barChartDataA = {
+		labels : ["Protagonist","Supporter","Neutral","Gatekeeper"],
+		datasets : [
+			{
+				fillColor : "rgba(220,220,220,0.5)",
+				strokeColor : "rgba(220,220,220,0.8)",
+				highlightFill: "rgba(220,220,220,0.75)",
+				highlightStroke: "rgba(220,220,220,1)",
+				data : [RoleAProtagonist,RoleASupporter,RoleANeutral,RoleAGatekeeper]
+			}
+		]
+	}
+	
+	// PARTIE B
+	var RoleBGatekeeper = 56;
+	var RoleBNeutral = 21;
+	var RoleBProtagonist = 10;
+	var RoleBSupporter = 13;
+	var barChartDataB = {
+		labels : ["Protagonist","Supporter","Neutral","Gatekeeper"],
+		datasets : [
+			{
+				fillColor : "rgba(220,220,220,0.5)",
+				strokeColor : "rgba(220,220,220,0.8)",
+				highlightFill: "rgba(220,220,220,0.75)",
+				highlightStroke: "rgba(220,220,220,1)",
+				data : [RoleBProtagonist,RoleBSupporter,RoleBNeutral,RoleBGatekeeper]
+			}
+		]
+	}
+	
+	// PARTIE C
+	var RoleBGatekeeper = 10;
+	var RoleBNeutral = 14;
+	var RoleBProtagonist = 53;
+	var RoleBSupporter = 22;
+	var barChartDataC = {
+		labels : ["Protagonist","Supporter","Neutral","Gatekeeper"],
+		datasets : [
+			{
+				fillColor : "rgba(220,220,220,0.5)",
+				strokeColor : "rgba(220,220,220,0.8)",
+				highlightFill: "rgba(220,220,220,0.75)",
+				highlightStroke: "rgba(220,220,220,1)",
+				data : [RoleBProtagonist,RoleBSupporter,RoleBNeutral,RoleBGatekeeper]
+			}
+		]
+	}
+	
+	// PARTIE D
+	var RoleBGatekeeper = 8;
+	var RoleBNeutral = 71;
+	var RoleBProtagonist = 9;
+	var RoleBSupporter = 10;
+	var barChartDataD = {
+		labels : ["Protagonist","Supporter","Neutral","Gatekeeper"],
+		datasets : [
+			{
+				fillColor : "rgba(220,220,220,0.5)",
+				strokeColor : "rgba(220,220,220,0.8)",
+				highlightFill: "rgba(220,220,220,0.75)",
+				highlightStroke: "rgba(220,220,220,1)",
+				data : [RoleBProtagonist,RoleBSupporter,RoleBNeutral,RoleBGatekeeper]
+			}
+		]
+	}
+	
+	
+	
+	window.onload = function(){
+		var ctx = document.getElementById("canvasA").getContext("2d");
+		window.myBar = new Chart(ctx).Bar(barChartDataA, {
+			responsive : true
+		});
+		
+		var ctx = document.getElementById("canvasB").getContext("2d");
+		window.myBar = new Chart(ctx).Bar(barChartDataB, {
+			responsive : true
+		});
+		
+		var ctx = document.getElementById("canvasC").getContext("2d");
+		window.myBar = new Chart(ctx).Bar(barChartDataC, {
+			responsive : true
+		});
+		
+		var ctx = document.getElementById("canvasD").getContext("2d");
+		window.myBar = new Chart(ctx).Bar(barChartDataD, {
+			responsive : true
+		});
+	}
+
+	</script>
+	</body>
+	
+	<script> /*
+<!doctype html>
+<html>
+   <head>
+      <meta charset="utf-8" />
+	  <script src="Charts.js"></script>
+      <title>xAPI Meeting Browser</title>
+   </head>
+   
+   <body>
+
+	  
+	  
+	  <canvas id="AA" width="400" height="400"></canvas>
+	  <canvas id="myChart" width="400" height="400"></canvas>
+	  <canvas id="skills" width="300" height="300"></canvas>
+	  
+		<script language="javascript">
+		
+		
+		canvas1 = document.createElement("canvas");
+		canvas1.setAttribute("id","A");
+		canvas1.setAttribute("width","400");
+		canvas1.setAttribute("height","400");
+
+		canvas2 = document.createElement("canvas");
+		canvas2.setAttribute("id","B");
+		canvas2.setAttribute("width","400");
+		canvas2.setAttribute("height","400");
+
+		canvas3 = document.createElement("canvas");
+		canvas3.setAttribute("id","C");
+		canvas3.setAttribute("width","400");
+		canvas3.setAttribute("height","400");
+
+		canvas4 = document.createElement("canvas");
+		canvas4.setAttribute("id","D");
+		canvas4.setAttribute("width","400");
+		canvas4.setAttribute("height","400");
+
+		var pieData = [
+   {
+      value: 25,
+      label: 'Java',
+      color: '#811BD6'
+   },
+   {
+      value: 10,
+      label: 'Scala',
+      color: '#9CBABA'
+   },
+   {
+      value: 30,
+      label: 'PHP',
+      color: '#D18177'
+   },
+   {
+      value : 35,
+      label: 'HTML',
+      color: '#6AE128'
+   }
+];
+		
+		
+		var context = document.getElementById('skills').getContext('2d');
+		var skillsChart = new Chart(context).Pie(pieData);
+		
+		
+		// Get the context of the canvas element we want to select
+		var ctx = document.getElementById("myChart").getContext("2d");
+		var myNewChart = new Chart(ctx).PolarArea(data);
+
+		var barData = {
+			labels: ['Italy', 'UK', 'USA', 'Germany', 'France', 'Japan'],
+			datasets: [
+				{
+					label: '2010 customers #',
+					fillColor: '#382765',
+					data: [2500, 1902, 1041, 610, 1245, 952]
+				},
+				{
+					label: '2014 customers #',
+					fillColor: '#7BC225',
+					data: [3104, 1689, 1318, 589, 1199, 1436]
+				}
+			]
+		};*/
+		</script>
+   </body>
+</html>
+<script>
+</html>
+
+

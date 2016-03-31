@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<div>
+	    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+		<script src="tincan.js"></script>	
+		<script src="initialisationServeur.js"></script>
+		<script src="VueProfesseur.js"></script>
+				<link rel='stylesheet' href='js/nv.d3.css'/>
+		<script type="text/javascript" src="js/d3.v3.js" charset="utf-8"></script>
+		<script type="text/javascript" src="js/nv.d3.js"></script>
+		<script type="text/javascript" src="js/xapiwrapper.min.js"></script>
+		<script type="text/javascript" src="js/chart.js"></script>
+		<script type="text/javascript" src="js/dashboard.js"></script>
+		<script type="text/javascript" src="js/xapicollection.js"></script>
+    <meta charset="utf-8">
+<script src="js/xapiwrapper.min.js"></script>
+<script type="text/javascript">
+
+function wordExtract(statements)
+{
+result = "";
+for(var i=0;i<statements.length;i++)
+{
+var st = statements[i];
+result = result + st["object"]["definition"]["description"]["und"]+ " ";
+}
+return result;
+}
+function init()
+{
+  var conf = {
+"endpoint" : "https://cloud.scorm.com/tc/0O6GMM7KOI/sandbox/",
+"user" : "vincentglize@hotmail.fr",
+"password" : "iutbay64",
+"allowFail" : "False"
+};
+ADL.XAPIWrapper.changeConfig(conf);
+alert(ADL.XAPIWrapper.testConfig())
+var ret = ADL.XAPIWrapper.getStatements();
+unStat = ret.statements;
+document.write(Yolo(unStat));
+}
+
+function init2()
+{
+  var conf = {
+"endpoint" : "https://cloud.scorm.com/tc/0O6GMM7KOI/sandbox/",
+"user" : "vincentglize@hotmail.fr",
+"password" : "iutbay64",
+"allowFail" : "False"
+};
+ADL.XAPIWrapper.changeConfig(conf);
+alert(ADL.XAPIWrapper.testConfig())
+var ret = ADL.XAPIWrapper.getStatements();
+unStat = ret.statements;
+document.write(Yolo(unStat));
+}
+function Yolo(statements)
+{
+var time =0;
+var petit=0;
+var timer = new Array();
+for (var i=0;i<statements.length;i++){
+var st = statements[i];
+time = time + st["object"]["definition"]["description"]["und"]+ "";
+}
+return(time);
+}
+
+</script>
+</head>
+<body >
+<code><pre id='output'></pre></code>
+<div>
+<button onclick='init()'> init </button></div>
+<div>
+<button onclick='init2()'> init2 </button></div>
+
+</body>
+</html>
